@@ -240,9 +240,9 @@ class module(types.ModuleType):
 
     def __dir__(self):
         """Just show what we want to show."""
-        return list(new_module.__all__ + [
+        return list(new_module.__all__) + [
             '__file__', '__doc__', '__all__', '__name__', '__path__',
-            '__package__'])
+            '__package__']
 
     def __getattr__(self, name):
         if name == 'NestedAdmin':
