@@ -15,6 +15,9 @@ warnings.simplefilter("error", DeprecationWarning)
 warnings.simplefilter("error", PendingDeprecationWarning)
 warnings.simplefilter("error", RuntimeWarning)
 
+# Old distutils throws a PendingDeprecationWarning in python 3
+warnings.filterwarnings("ignore", "imp", PendingDeprecationWarning)
+
 
 def django_tests(verbosity, failfast, test_labels):
     sys.stderr.write('Using Python version %s from %s\n' % (sys.version[:5], sys.executable))

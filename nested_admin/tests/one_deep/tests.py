@@ -1,4 +1,7 @@
-import distutils.spawn
+try:
+    from distutils.spawn import find_executable
+except:
+    find_executable = lambda f: None
 import django
 import inspect
 import logging
@@ -27,7 +30,7 @@ class VisualComparisonTestCase(BaseNestedAdminTestCase):
     def setUpClass(cls):
         cls.pdiff_bin = os.environ.get('PDIFF_BIN')
         if not cls.pdiff_bin:
-            cls.pdiff_bin = distutils.spawn.find_executable('blink-diff')
+            cls.pdiff_bin = find_executable('blink-diff')
         if not cls.pdiff_bin or not os.path.exists(cls.pdiff_bin):
             raise SkipTest("blink-diff not installed")
         cls.pdiff_output_dir = os.environ.get('PDIFF_OUTPUT_DIR')
